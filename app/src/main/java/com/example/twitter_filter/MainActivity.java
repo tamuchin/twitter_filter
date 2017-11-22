@@ -4,6 +4,10 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 import twitter4j.ResponseList;
 import twitter4j.Status;
@@ -13,11 +17,19 @@ import twitter4j.TwitterException;
 public class MainActivity extends AppCompatActivity {
 
     Twitter mTwitter;
+    ArrayAdapter<String> adapter;
+    ArrayList<String> hoge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ListView list = (ListView) findViewById(R.id.listView);
+        hoge = new ArrayList<String>();
+        adapter = new ArrayAdapter<String>(this, R.layout.adapter, hoge);
+
+        list.setAdapter(adapter);
 
         if(!TwitterUtils.hasAccessToken(this)){
             Intent intent = new Intent(getApplication(), TwitterOAuthActivity.class);
@@ -47,6 +59,9 @@ public class MainActivity extends AppCompatActivity {
             protected void onPostExecute(ResponseList<twitter4j.Status> lists) {
                 for(twitter4j.Status status : lists){
                     System.out.println(status.getText());
+                    String tweet_str= status.getText();
+                    adapter.add(tweet_str);
+                    adapter.notifyDataSetChanged();
                 }
             }
         };
