@@ -23,6 +23,8 @@ public class TwitterOAuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_twitter_oauth);
 
+
+
         //CallBack用URLの設定
         callBackURL = getString(R.string.twitter_callback_url);
         //Twitterインスタンスの取得

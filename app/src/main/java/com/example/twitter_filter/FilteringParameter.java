@@ -1,17 +1,20 @@
 package com.example.twitter_filter;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by noy on 2017/11/16.
  */
 
 
-public class FilteringPrameter {
+public class FilteringParameter implements Parcelable {
     private final int filterNumber = 3;     //条件の数
     private int minLength;                  //文字数条件
     private int minFav;                     //お気に入り数条件
     private boolean[] isActive;             //フィルターが作用しているか
 
-    FilteringPrameter(){
+    FilteringParameter(){
         isActive = new boolean[filterNumber];
 
         minLength = 80; //仮決定した初期値
@@ -22,7 +25,7 @@ public class FilteringPrameter {
         }
     }
 
-    FilteringPrameter(int length, int fav){
+    FilteringParameter(int length, int fav){
         isActive = new boolean[filterNumber];
 
         minLength = length;
@@ -64,4 +67,13 @@ public class FilteringPrameter {
         isActive[i] = false;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+    }
 }

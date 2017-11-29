@@ -25,17 +25,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(!TwitterUtils.hasAccessToken(this)){
+            Intent intent = new Intent(this, TwitterOAuthActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         ListView list = (ListView) findViewById(R.id.listView);
         hoge = new ArrayList<String>();
         adapter = new ArrayAdapter<String>(this, R.layout.adapter, hoge);
 
         list.setAdapter(adapter);
 
-        if(!TwitterUtils.hasAccessToken(this)){
-            Intent intent = new Intent(getApplication(), TwitterOAuthActivity.class);
-            startActivity(intent);
-            finish();
-        }
 
         mTwitter = TwitterUtils.getTwitterInstance(this);
 
