@@ -1,11 +1,13 @@
 package com.example.twitter_filter;
 
+import java.io.Serializable;
+
 /**
  * Created by noy on 2017/11/16.
  */
 
 
-public class FilteringParameter {
+public class FilteringParameter implements Serializable {
     private final int filterNumber = 3;     //条件の数
     private int minLength;                  //文字数条件
     private int minFav;                     //お気に入り数条件

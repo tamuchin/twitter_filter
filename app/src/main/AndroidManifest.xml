@@ -31,7 +31,7 @@
                     android:scheme="garugabugen" />
             </intent-filter>
         </activity>
-        <activity android:name=".OptionActivity"></activity>
+        <activity android:name=".OptionActivity" />
     </application>
 
 </manifest>

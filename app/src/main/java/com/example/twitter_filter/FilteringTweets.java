@@ -19,7 +19,7 @@ import twitter4j.Status;
 
 
 public class FilteringTweets {
-    public ResponseList<Status> getFilteredTweet(ResponseList<Status> lists, FilteringPrameter parameter){
+    public ResponseList<Status> getFilteredTweet(ResponseList<Status> lists, FilteringParameter parameter){
         Iterator<Status> it = lists.iterator();
         while(it.hasNext()){
             Status status = it.next();
@@ -30,7 +30,7 @@ public class FilteringTweets {
         return lists;
     }
 
-    public boolean isPassing(Status status, FilteringPrameter parameter){
+    public boolean isPassing(Status status, FilteringParameter parameter){
         if(parameter.isActive(0) && status.getText().length() < parameter.getMinLength()) return false;
         if(parameter.isActive(1) && status.getFavoriteCount() < parameter.getMinFav()) return false;
         if(parameter.isActive(2) && status.getExtendedMediaEntities().length >= 1) return false;
