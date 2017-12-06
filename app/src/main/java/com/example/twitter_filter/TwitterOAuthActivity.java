@@ -21,6 +21,8 @@ public class TwitterOAuthActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_twitter_oauth);
+
 
         //CallBack用URLの設定
         callBackURL = getString(R.string.twitter_callback_url);

@@ -39,13 +39,14 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         }
+        System.out.println("oawtta");
 
         mTwitter = TwitterUtils.getTwitterInstance(this);
 
 
 
 
-        test();
+        //test();
     }
 
     void test(){
