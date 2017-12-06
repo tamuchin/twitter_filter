@@ -83,7 +83,7 @@ public class OptionActivity extends AppCompatActivity {
 
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FilteringPrameter filteringParameter = new FilteringPrameter(textSeekBar.getProgress(), favSeekBar.getProgress());
+                FilteringParameter filteringParameter = new FilteringParameter(textSeekBar.getProgress(), favSeekBar.getProgress());
 
                 //Intent intent = new Intent();
                 //intent.putExtra("key", filteringParameter);
