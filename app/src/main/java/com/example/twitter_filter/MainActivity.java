@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -14,31 +13,35 @@ import twitter4j.Status;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 
+import static com.example.twitter_filter.R.id.listView;
+
 public class MainActivity extends AppCompatActivity {
 
     Twitter mTwitter;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> hoge;
+
+    ArrayList<TimeLine> list;
+    MyAdapter myAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ListView TimeLine = (ListView) findViewById(listView);
+
+        list = new ArrayList<>();
+        myAdapter = new MyAdapter(MainActivity.this);
+        myAdapter.setTimeLineList(list);
+        TimeLine.setAdapter(myAdapter);
+
         if(!TwitterUtils.hasAccessToken(this)){
-            Intent intent = new Intent(this, TwitterOAuthActivity.class);
+            Intent intent = new Intent(getApplication(), TwitterOAuthActivity.class);
             startActivity(intent);
             finish();
         }
 
-        ListView list = (ListView) findViewById(R.id.listView);
-        hoge = new ArrayList<String>();
-        adapter = new ArrayAdapter<String>(this, R.layout.adapter, hoge);
-
-        list.setAdapter(adapter);
-
-
         mTwitter = TwitterUtils.getTwitterInstance(this);
+
 
 
 
@@ -61,8 +64,11 @@ public class MainActivity extends AppCompatActivity {
                 for(twitter4j.Status status : lists){
                     System.out.println(status.getText());
                     String tweet_str= status.getText();
-                    adapter.add(tweet_str);
-                    adapter.notifyDataSetChanged();
+
+                    TimeLine timeline = new TimeLine();
+                    timeline.setTweet(tweet_str);
+                    list.add(timeline);
+                    myAdapter.notifyDataSetChanged();
                 }
             }
         };
