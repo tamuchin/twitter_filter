@@ -3,4 +3,7 @@
     <string name="twitter_callback_url">garugabugen://twitter</string>
     <string name="twitter_consumer_key">bQiIpFpo5ZlRypD9w2fKQaTH0</string>
     <string name="twitter_consumer_secret">uQo0hTn38jv7Knbv5a620pOPrsxfk9Ws1LR5B4CtS4Ae0e3uRi</string>
+    <string name="fav">いいね数</string>
+    <string name="text_length">ツイート文字数</string>
+    <string name="ok">OK</string>
 </resources>
