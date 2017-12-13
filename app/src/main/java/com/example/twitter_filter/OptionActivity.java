@@ -50,14 +50,14 @@ public class OptionActivity extends AppCompatActivity {
         favSeekBar.setProgress(-1);
         textSeekBar.setProgress(-1);
 
-        favNumber.setText(favSeekBar.getProgress());
-        textSize.setText(textSeekBar.getProgress());
+        favNumber.setText(String.valueOf(favSeekBar.getProgress()));
+        textSize.setText(String.valueOf(textSeekBar.getProgress()));
 
         favSeekBar.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         // ツマミをドラッグしたときに呼ばれる
-                        favNumber.setText(favSeekBar.getProgress());
+                        favNumber.setText(String.valueOf(favSeekBar.getProgress()));
                     }
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         // ツマミに触れたときに呼ばれる
@@ -72,7 +72,7 @@ public class OptionActivity extends AppCompatActivity {
                 new SeekBar.OnSeekBarChangeListener() {
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         // ツマミをドラッグしたときに呼ばれる
-                        textSize.setText(textSeekBar.getProgress());
+                        textSize.setText(String.valueOf(textSeekBar.getProgress()));
                     }
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         // ツマミに触れたときに呼ばれる

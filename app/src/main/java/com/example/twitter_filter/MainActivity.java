@@ -1,9 +1,13 @@
 package com.example.twitter_filter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -21,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<TimeLine> list;
     MyAdapter myAdapter;
+    final int REQUEST_CODE = 1001; //オプションアクティビティからの戻り値を受け取る
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +79,42 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         task.execute();
+    }
+
+    //アクションバーを表示するメソッド
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    //アクションバーのオプションをタップしたときに呼び出されるメソッド
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+            case R.id.option_menu:
+                System.out.println("heko"); //test
+                Intent intent = new Intent(getApplication(), OptionActivity.class);
+                startActivityForResult( intent, REQUEST_CODE );
+
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void onActivityResult( int requestCode, int resultCode, Intent intent ) {
+        // startActivityForResult()の際に指定した識別コードとの比較
+        if( requestCode == 1001 ){
+            // 返却結果ステータスとの比較
+            if( resultCode == Activity.RESULT_OK ){
+                // 返却されてきたintentから値を取り出す
+                FilteringParameter filteringParameter = (FilteringParameter) intent.getExtras().get("key");
+
+                System.out.println(filteringParameter.getMinFav()); //test
+                System.out.println(filteringParameter.getMinLength()); //test
+            }
+        }
     }
 }
 
