@@ -1,7 +1,5 @@
 package com.example.twitter_filter;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -50,14 +48,14 @@ public class OptionActivity extends AppCompatActivity {
         favSeekBar.setProgress(-1);
         textSeekBar.setProgress(-1);
 
-        favNumber.setText(String.valueOf(favSeekBar.getProgress()));
-        textSize.setText(String.valueOf(textSeekBar.getProgress()));
+        favNumber.setText(favSeekBar.getProgress());
+        textSize.setText(textSeekBar.getProgress());
 
         favSeekBar.setOnSeekBarChangeListener(
                 new SeekBar.OnSeekBarChangeListener() {
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         // ツマミをドラッグしたときに呼ばれる
-                        favNumber.setText(String.valueOf(favSeekBar.getProgress()));
+                        favNumber.setText(favSeekBar.getProgress());
                     }
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         // ツマミに触れたときに呼ばれる
@@ -72,7 +70,7 @@ public class OptionActivity extends AppCompatActivity {
                 new SeekBar.OnSeekBarChangeListener() {
                     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                         // ツマミをドラッグしたときに呼ばれる
-                        textSize.setText(String.valueOf(textSeekBar.getProgress()));
+                        textSize.setText(textSeekBar.getProgress());
                     }
                     public void onStartTrackingTouch(SeekBar seekBar) {
                         // ツマミに触れたときに呼ばれる
@@ -87,10 +85,10 @@ public class OptionActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FilteringParameter filteringParameter = new FilteringParameter(textSeekBar.getProgress(), favSeekBar.getProgress());
 
-                Intent intent = new Intent();
-                intent.putExtra("key", filteringParameter);
-                setResult(Activity.RESULT_OK, intent );
-                finish();
+                //Intent intent = new Intent();
+                //intent.putExtra("key", filteringParameter);
+                //setResult(Activity.RESULT_OK, intent );
+                //finish();
             }
         });
     }

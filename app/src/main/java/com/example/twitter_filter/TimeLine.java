@@ -1,5 +1,7 @@
 package com.example.twitter_filter;
 
+import com.loopj.android.image.SmartImageView;
+
 /**
  * Created by basyou on 2017/11/30.
  */
@@ -7,6 +9,7 @@ package com.example.twitter_filter;
 public class TimeLine {
     long id;
     private String tweet;
+    private SmartImageView icon;
     //private int price;
 
     public long getId() {
@@ -25,11 +28,12 @@ public class TimeLine {
         this.tweet=str;
     }
 
-    /*public int getPrice(){
-        return price;
+    public int getIcon(){
+        //return icon;
+        return 0;
     }
 
-    public void setPrice(int price){
-        this.price=price;
-    }*/
+    public void setIcon(SmartImageView pic){
+        this.icon=pic;
+    }
 }
