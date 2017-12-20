@@ -10,8 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -23,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     Twitter mTwitter;
 
-    ArrayList<TimeLine> list;
+    //ArrayList<TimeLine> list;
     MyAdapter myAdapter;
     final int REQUEST_CODE = 1001; //オプションアクティビティからの戻り値を受け取る
 
@@ -32,21 +30,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView TimeLine = (ListView) findViewById(listView);
-
-        list = new ArrayList<>();
-        myAdapter = new MyAdapter(MainActivity.this);
-        myAdapter.setTimeLineList(list);
-        TimeLine.setAdapter(myAdapter);
-
         if(!TwitterUtils.hasAccessToken(this)){
             Intent intent = new Intent(getApplication(), TwitterOAuthActivity.class);
             startActivity(intent);
             finish();
         }
-        System.out.println("oawtta");
+        else {
+            ListView TimeLine = (ListView) findViewById(listView);
+            myAdapter = new MyAdapter(this);
+            TimeLine.setAdapter(myAdapter);
+            System.out.println("oawtta");
 
-        mTwitter = TwitterUtils.getTwitterInstance(this);
+            mTwitter = TwitterUtils.getTwitterInstance(this);
+            test();
+        }
 
 
 
@@ -67,14 +64,12 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             protected void onPostExecute(ResponseList<twitter4j.Status> lists) {
-                for(twitter4j.Status status : lists){
-                    System.out.println(status.getText());
-                    String tweet_str= status.getText();
-
-                    TimeLine timeline = new TimeLine();
-                    timeline.setTweet(tweet_str);
-                    list.add(timeline);
-                    myAdapter.notifyDataSetChanged();
+                if (lists != null) {
+                    myAdapter.clear();
+                    for(twitter4j.Status status : lists){
+                        myAdapter.add(status);
+                    }
+                    // TimeLine.getListView().setSelection(0);
                 }
             }
         };
