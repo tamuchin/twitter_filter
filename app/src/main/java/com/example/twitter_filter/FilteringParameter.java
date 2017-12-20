@@ -8,23 +8,22 @@ import java.io.Serializable;
 
 
 public class FilteringParameter implements Serializable {
-    private final int filterNumber = 3;     //条件の数
     private int minLength;                  //文字数条件
     private int minFav;                     //お気に入り数条件
+    private int needImage;              //画層が含まれているかでフィルタリング
+    public final int NEED_IMAGE = 1;
+    public final int NO_IMAGE = 0;
+    public final int BOTH = -1;
 
     FilteringParameter(){
-        minLength = 80; //仮決定した初期値
-        minFav = 10;
-
+        minLength = 0;
+        minFav = 0;
+        needImage = BOTH;
     }
 
     FilteringParameter(int length, int fav){
         minLength = length;
         minFav = fav;
-    }
-
-    public int getFilterNumber() {
-        return filterNumber;
     }
 
     public int getMinLength() {
@@ -43,4 +42,11 @@ public class FilteringParameter implements Serializable {
         this.minFav = minFav;
     }
 
+    public int getNeedImage() {
+        return needImage;
+    }
+
+    public void setNeedImage(int needImage) {
+        this.needImage = needImage;
+    }
 }

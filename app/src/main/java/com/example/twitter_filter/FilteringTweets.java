@@ -33,7 +33,12 @@ public class FilteringTweets {
     public boolean isPassing(Status status, FilteringParameter parameter){
         if(status.getText().length() < parameter.getMinLength()) return false;
         if(status.getFavoriteCount() < parameter.getMinFav()) return false;
-        //if(status.getExtendedMediaEntities().length <= 1000) return false;
+
+        if(parameter.getNeedImage() == parameter.NEED_IMAGE){
+            if(status.getExtendedMediaEntities().length == 0) return false;
+        }else if(parameter.getNeedImage() == parameter.NO_IMAGE){
+            if(status.getExtendedMediaEntities().length >= 1) return false;
+        }
         return true;
     }
 }

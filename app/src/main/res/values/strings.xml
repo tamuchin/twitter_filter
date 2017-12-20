@@ -6,4 +6,9 @@
     <string name="fav">いいね数</string>
     <string name="text_length">ツイート文字数</string>
     <string name="ok">OK</string>
+    <string name="option">option</string>
+    <string name="entity">画像</string>
+    <string name="RadioButton1">どちらでも</string>
+    <string name="RadioButton2">必ず含む</string>
+    <string name="RadioButton3">必ず含まない</string>
 </resources>

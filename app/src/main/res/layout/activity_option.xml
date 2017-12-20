@@ -59,6 +59,41 @@
             tools:layout_editor_absoluteX="55dp"
             tools:layout_editor_absoluteY="52dp" />
 
+        <TextView
+            android:id="@+id/entityTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/entity"
+            tools:layout_editor_absoluteX="55dp"
+            tools:layout_editor_absoluteY="27dp" />
+
+        <RadioGroup android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <RadioButton
+                android:id="@+id/radioButtonBoth"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/RadioButton1" />
+
+
+            <RadioButton
+                android:id="@+id/radioButtonImageNeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/RadioButton2" />
+
+            <RadioButton
+                android:id="@+id/radioButtonImageNoNeed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/RadioButton3" />
+        </RadioGroup>
+
+
         <Button
             android:id="@+id/okButton"
             android:layout_width="match_parent"

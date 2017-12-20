@@ -9,27 +9,6 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-/*
-返却を意識してActivityを起動する
-// 遷移先のactivityを指定してintentを作成
-Intent intent = new Intent( this, MyActivity.class );
-// 遷移先から返却されてくる際の識別コード
-int requestCode = 1001;
-// 返却値を考慮したActivityの起動を行う
-startActivityForResult( intent, requestCode );
-public void onActivityResult( int requestCode, int resultCode, Intent intent )
-{
- // startActivityForResult()の際に指定した識別コードとの比較
- if( requestCode == 1001 ){
-  // 返却結果ステータスとの比較
-  if( resultCode == Activity.RESULT_OK ){
-   // 返却されてきたintentから値を取り出す
-   String str = intent.getStringExtra( "key" );
-  }
- }
-}
-*/
-
 public class OptionActivity extends AppCompatActivity {
 
     TextView favNumber;
@@ -49,7 +28,6 @@ public class OptionActivity extends AppCompatActivity {
 
         favSeekBar.setMax(1000);
         textSeekBar.setMax(144);
-
 
         favSeekBar.setProgress(-1);
         textSeekBar.setProgress(-1);

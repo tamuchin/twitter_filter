@@ -6,7 +6,7 @@
 
     <item
         android:id="@+id/option_menu"
-        android:title="option"
+        android:title="@string/option"
         android:orderInCategory="1"
         app:showAsAction="never" />
 </menu>
