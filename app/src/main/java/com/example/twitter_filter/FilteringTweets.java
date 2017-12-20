@@ -31,9 +31,9 @@ public class FilteringTweets {
     }
 
     public boolean isPassing(Status status, FilteringParameter parameter){
-        if(parameter.isActive(0) && status.getText().length() < parameter.getMinLength()) return false;
-        if(parameter.isActive(1) && status.getFavoriteCount() < parameter.getMinFav()) return false;
-        if(parameter.isActive(2) && status.getExtendedMediaEntities().length >= 1) return false;
+        if(status.getText().length() < parameter.getMinLength()) return false;
+        if(status.getFavoriteCount() < parameter.getMinFav()) return false;
+        //if(status.getExtendedMediaEntities().length <= 1000) return false;
         return true;
     }
 }

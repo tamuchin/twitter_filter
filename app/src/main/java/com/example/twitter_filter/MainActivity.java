@@ -20,6 +20,8 @@ import static com.example.twitter_filter.R.id.listView;
 public class MainActivity extends AppCompatActivity {
 
     Twitter mTwitter;
+    FilteringParameter filteringParameter;
+    FilteringTweets filteringTweets;
 
     //ArrayList<TimeLine> list;
     MyAdapter myAdapter;
@@ -30,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        filteringParameter = new FilteringParameter();
+        filteringTweets = new FilteringTweets();
+
         if(!TwitterUtils.hasAccessToken(this)){
             Intent intent = new Intent(getApplication(), TwitterOAuthActivity.class);
             startActivity(intent);
@@ -39,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
             ListView TimeLine = (ListView) findViewById(listView);
             myAdapter = new MyAdapter(this);
             TimeLine.setAdapter(myAdapter);
-            System.out.println("oawtta");
 
             mTwitter = TwitterUtils.getTwitterInstance(this);
             test();
@@ -64,9 +68,10 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             protected void onPostExecute(ResponseList<twitter4j.Status> lists) {
+                ResponseList<twitter4j.Status> filteredLists = filteringTweets.getFilteredTweet(lists, filteringParameter);
                 if (lists != null) {
                     myAdapter.clear();
-                    for(twitter4j.Status status : lists){
+                    for(twitter4j.Status status : filteredLists){
                         myAdapter.add(status);
                     }
                     // TimeLine.getListView().setSelection(0);
@@ -89,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         switch (item.getItemId()) {
             case R.id.option_menu:
-                System.out.println("heko"); //test
                 Intent intent = new Intent(getApplication(), OptionActivity.class);
                 startActivityForResult( intent, REQUEST_CODE );
 
@@ -103,11 +107,9 @@ public class MainActivity extends AppCompatActivity {
         if( requestCode == 1001 ){
             // 返却結果ステータスとの比較
             if( resultCode == Activity.RESULT_OK ){
-                // 返却されてきたintentから値を取り出す
-                FilteringParameter filteringParameter = (FilteringParameter) intent.getExtras().get("key");
-
-                System.out.println(filteringParameter.getMinFav()); //test
-                System.out.println(filteringParameter.getMinLength()); //test
+                // 返却されてきたintentから値を取り出し、パラメータを設定する
+                filteringParameter = (FilteringParameter) intent.getExtras().get("key");
+                test(); //update listview
             }
         }
     }

@@ -47,6 +47,10 @@ public class OptionActivity extends AppCompatActivity {
         textSize = (TextView) findViewById(R.id.textSize);
         okButton = (Button) findViewById(R.id.okButton);
 
+        favSeekBar.setMax(1000);
+        textSeekBar.setMax(144);
+
+
         favSeekBar.setProgress(-1);
         textSeekBar.setProgress(-1);
 
