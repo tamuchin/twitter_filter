@@ -30,8 +30,14 @@ public class MyAdapter extends ArrayAdapter<Status> {
         }
         Status item = getItem(position);
 
+        TextView name = (TextView) convertView.findViewById(R.id.name);
+        name.setText(String.valueOf(item.getUser().getName()));
         TextView tweet = (TextView) convertView.findViewById(R.id.tweet);
         tweet.setText(item.getText());
+        TextView fav = (TextView) convertView.findViewById(R.id.fav);
+        fav.setText(String.valueOf(item.getFavoriteCount()));
+        TextView retweet = (TextView) convertView.findViewById(R.id.retweet);
+        retweet.setText(String.valueOf(item.getRetweetCount()));
         SmartImageView icon = (SmartImageView) convertView.findViewById(R.id.icon);
         icon.setImageUrl(item.getUser().getProfileImageURL());
 
