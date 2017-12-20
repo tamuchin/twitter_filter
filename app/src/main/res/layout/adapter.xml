@@ -1,52 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <com.loopj.android.image.SmartImageView
-        android:id="@+id/icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" />
-
-    <TextView
-        android:id="@+id/tweet"
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ffffff"
+        android:id="@+id/tweet"
 
-        android:textColor="#000000"
         android:textSize="14dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="2dp"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/icon" />
-
-    <TextView
-        android:id="@+id/retweet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="リツイート"
-        android:textSize="10dp"
-        tools:layout_editor_absoluteX="70dp"
-        tools:layout_editor_absoluteY="123dp"
-        android:layout_below="@+id/tweet"
-        android:layout_toEndOf="@+id/fav" />
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/fav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="いいね"
-        android:textSize="10dp"
-        tools:layout_editor_absoluteX="40dp"
-        tools:layout_editor_absoluteY="65dp"
-        android:layout_below="@+id/tweet"
-        android:layout_toEndOf="@+id/icon" />
+        android:textSize="10dp" />
 
+    <TextView
+        android:id="@+id/retweet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="リツイート"
+        android:textSize="10dp" />
 
-
-</RelativeLayout>
+</LinearLayout>
