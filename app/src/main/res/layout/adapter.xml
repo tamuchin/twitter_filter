@@ -80,5 +80,33 @@
         android:layout_toEndOf="@+id/icon"
         android:text="name" />
 
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/pic1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fav"
+        android:layout_alignStart="@+id/textView4" />
+
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/pic2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pic1"
+        android:layout_alignStart="@+id/pic1" />
+
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/pic3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pic2"
+        android:layout_alignStart="@+id/pic2" />
+
+    <com.loopj.android.image.SmartImageView
+        android:id="@+id/pic4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pic3"
+        android:layout_alignStart="@+id/pic3" />
+
 
 </RelativeLayout>

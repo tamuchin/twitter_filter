@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
 
+import twitter4j.Paging;
 import twitter4j.ResponseList;
 import twitter4j.Status;
 import twitter4j.Twitter;
@@ -59,8 +60,10 @@ public class MainActivity extends AppCompatActivity {
         AsyncTask<Void, Void, ResponseList<Status>> task = new AsyncTask<Void, Void, ResponseList<Status>>() {
             @Override
             protected ResponseList<twitter4j.Status> doInBackground(Void... params) {
+                Paging paging = new Paging();
+                paging.setCount(40);
                 try {
-                    return mTwitter.getHomeTimeline();
+                    return mTwitter.getHomeTimeline(paging);
                 } catch (TwitterException e) {
                     e.printStackTrace();
                 }
