@@ -42,12 +42,13 @@ public class MyAdapter extends ArrayAdapter<Status> {
         SmartImageView icon = (SmartImageView) convertView.findViewById(R.id.icon);
         icon.setImageUrl(item.getUser().getProfileImageURL());
 
+        SmartImageView pic1 = (SmartImageView) convertView.findViewById(R.id.pic1);
+        pic1.setImageBitmap(null);
+
         MediaEntity[] mediaEntities = item.getExtendedMediaEntities();
         if (mediaEntities.length > 0) {
-            SmartImageView pic1 = (SmartImageView) convertView.findViewById(R.id.pic1);
             pic1.setImageUrl(mediaEntities[0].getMediaURL());
         }
-
 
         return convertView;
     }

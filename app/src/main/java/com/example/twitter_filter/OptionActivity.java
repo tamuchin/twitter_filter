@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -13,7 +15,9 @@ public class OptionActivity extends AppCompatActivity {
 
     TextView favNumber;
     TextView textSize;
+    RadioGroup radioGroup;
     Button okButton;
+    int checkedRadioButton = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +28,7 @@ public class OptionActivity extends AppCompatActivity {
         final SeekBar textSeekBar = (SeekBar) findViewById(R.id.textSeekBar);
         favNumber = (TextView) findViewById(R.id.favNumber);
         textSize = (TextView) findViewById(R.id.textSize);
+        radioGroup = (RadioGroup) findViewById(R.id.radioButtonGroup);
         okButton = (Button) findViewById(R.id.okButton);
 
         favSeekBar.setMax(1000);
@@ -65,9 +70,21 @@ public class OptionActivity extends AppCompatActivity {
                 }
         );
 
+        radioGroup.check(R.id.radioButtonBoth);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radio = (RadioButton)findViewById(checkedId);
+                if(radio.isChecked()) {
+                    System.out.println(group.indexOfChild(radio));
+                    checkedRadioButton = group.indexOfChild(radio);
+                }
+            }
+        });
+
         okButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FilteringParameter filteringParameter = new FilteringParameter(textSeekBar.getProgress(), favSeekBar.getProgress());
+                FilteringParameter filteringParameter = new FilteringParameter(textSeekBar.getProgress(), favSeekBar.getProgress(), checkedRadioButton);
 
                 Intent intent = new Intent();
                 intent.putExtra("key", filteringParameter);

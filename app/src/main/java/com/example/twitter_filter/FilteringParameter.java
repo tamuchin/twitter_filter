@@ -11,9 +11,9 @@ public class FilteringParameter implements Serializable {
     private int minLength;                  //文字数条件
     private int minFav;                     //お気に入り数条件
     private int needImage;              //画層が含まれているかでフィルタリング
+    public final int BOTH = 0;
     public final int NEED_IMAGE = 1;
-    public final int NO_IMAGE = 0;
-    public final int BOTH = -1;
+    public final int NO_IMAGE = 2;
 
     FilteringParameter(){
         minLength = 0;
@@ -21,9 +21,10 @@ public class FilteringParameter implements Serializable {
         needImage = BOTH;
     }
 
-    FilteringParameter(int length, int fav){
+    FilteringParameter(int length, int fav, int image){
         minLength = length;
         minFav = fav;
+        needImage = image;
     }
 
     public int getMinLength() {
